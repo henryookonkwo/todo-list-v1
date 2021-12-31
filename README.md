@@ -6,4 +6,5 @@ Node JS,
 Express,
 Body-parser,
 EJS,
+EJS partials,
 Also understood Node Module Exports: How to pass functions and Data between Files
