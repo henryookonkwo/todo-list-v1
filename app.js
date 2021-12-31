@@ -9,7 +9,9 @@ let ejs = require('ejs');
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({extended: true})); // allows us to use thr body
+app.use(bodyParser.urlencoded({
+    extended: true
+})); // allows us to use thr body
 app.set("view engine", 'ejs');
 app.use(express.static("public"));
 
@@ -71,35 +73,41 @@ app.get("/", (req, res) => {
 
     let day = date.getDate();
 
-    res.render("list", {listTitle: day, newListItems: items});
+    res.render("list", {
+        listTitle: day,
+        newListItems: items
+    });
 
 });
 
-app.post("/", (req,res) => {
+app.post("/", (req, res) => {
     item = req.body.newListItems;
     console.log(req.body);
     // res.send("Post successful");
     if (req.body.list === "Work") {
         workItems.push(item);
         res.redirect("/work");
-    }else {
+    } else {
         items.push(item);
         res.redirect("/");
     }
-    
+
 });
 
-app.get("/work", (req,res) => {
-    res.render("list", {listTitle: "Work List",newListItems: workItems });
+app.get("/work", (req, res) => {
+    res.render("list", {
+        listTitle: "Work List",
+        newListItems: workItems
+    });
 });
 
-app.post("/work", (req,res) => {
+app.post("/work", (req, res) => {
     let item = req.body.newListItems;
     workItems.push(item);
     res.redirect("/work");
 });
 
-app.get("/about", (req,res)=> {
+app.get("/about", (req, res) => {
     res.render("about");
 });
 
